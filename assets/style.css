@@ -1,0 +1,291 @@
+/* =========================================================================
+   FICHES INFORMATION PATIENT — Feuille de style commune
+   Espace Francilien du Rachis / Rachis Paris
+   Usage : <link rel="stylesheet" href="../assets/style.css"> (depuis une sous-arbo)
+           <link rel="stylesheet" href="assets/style.css">    (depuis la racine)
+   Variante violette : ajouter class="theme-violet" sur <body> (Infiltrations)
+   ========================================================================= */
+
+:root {
+  --ink: #111;
+  --muted: #444;
+  --accent: #0b6fa4;     /* bleu principal — chirurgie */
+  --accent2: #22b8b8;    /* turquoise — accents secondaires */
+  --bg: #fff;
+  --border: #d9d9d9;
+}
+
+/* ---------- Variante thématique : Infiltrations / médecine interventionnelle ---------- */
+body.theme-violet {
+  --accent: #6c5ce7;     /* violet */
+  --accent2: #22b8b8;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #f3f5f7;
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, Helvetica, sans-serif;
+  line-height: 1.35;
+}
+
+/* ---------- Toolbar (sticky, imprimer + retour) ---------- */
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: rgba(255, 255, 255, 0.92);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(6px);
+}
+.toolbar-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 10px 16px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.toolbar .btn {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+}
+.toolbar .btn.primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+.toolbar .btn:hover { filter: brightness(0.97); }
+
+/* ---------- Mise en page générale ---------- */
+.wrap {
+  max-width: 980px;
+  margin: 22px auto;
+  padding: 0 16px 28px;
+}
+.page {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 26px 34px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* ---------- En-tête (logo + identité cabinet) ---------- */
+header.top {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 16px;
+  align-items: center;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--accent);
+}
+header.top img {
+  width: 110px;
+  height: auto;
+}
+.brand .brand-name {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.brand .line {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+/* ---------- Titre du document ---------- */
+.doc-title {
+  margin-top: 18px;
+  border-left: 6px solid var(--accent2);
+  padding-left: 14px;
+}
+.doc-title h1 {
+  margin: 0;
+  font-size: 22px;
+}
+.doc-title .meta {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* ---------- Hiérarchie ---------- */
+h2.chapter-title {
+  margin: 22px 0 8px;
+  font-size: 16px;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+h3.section-title {
+  margin: 14px 0 6px;
+  font-size: 14px;
+  color: var(--ink);
+}
+
+p { margin: 8px 0; }
+ul { margin: 8px 0 8px 18px; }
+li { margin: 4px 0; }
+
+/* ---------- Encadrés informatifs ---------- */
+.note {
+  border: 1px solid var(--border);
+  border-left: 6px solid var(--accent2);
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #fbfeff;
+  margin: 12px 0;
+}
+.warn {
+  border-left-color: #d93025;
+  background: #fff9f8;
+}
+
+/* ---------- Tableaux ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0 14px;
+  font-size: 13px;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 10px;
+  vertical-align: top;
+}
+th {
+  background: #f6f8fa;
+  text-align: left;
+}
+
+/* ---------- Séparateurs / pied ---------- */
+.hr {
+  margin: 18px 0;
+  height: 1px;
+  background: var(--border);
+  border: 0;
+}
+footer {
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* ---------- FAQ (Hernie, Infiltrations) ---------- */
+.faq-q {
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: 12px;
+  cursor: pointer;
+}
+.faq-q::before {
+  content: "▸ ";
+  display: inline-block;
+  transition: transform 0.2s;
+}
+details[open] > .faq-q::before {
+  transform: rotate(90deg);
+}
+.faq-answer {
+  margin: 6px 0 10px 16px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* ---------- Livrets kiné : phases de rééducation ---------- */
+.phase-box {
+  border: 1px solid var(--border);
+  border-left: 6px solid var(--accent);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 14px 0;
+  background: #fbfdfe;
+}
+.phase-box h3 {
+  margin-top: 0;
+  color: var(--accent);
+}
+
+/* ---------- Grilles d'exercices (livrets kiné) ---------- */
+.exercise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  margin: 10px 0;
+}
+.exercise-grid .card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #fff;
+}
+.exercise-grid .card h4 {
+  margin: 0 0 6px;
+  font-size: 14px;
+  color: var(--accent);
+}
+
+/* ---------- Grille d'objectifs (livrets kiné) ---------- */
+.objectifs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  margin: 10px 0;
+}
+.objectifs-grid .obj {
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent2);
+  border-radius: 6px;
+  padding: 8px 10px;
+  background: #fbfeff;
+  font-size: 13px;
+}
+
+/* ---------- Liens ---------- */
+a { color: var(--accent); }
+a:hover { text-decoration: underline; }
+
+/* ---------- Impression ---------- */
+@media print {
+  body { background: #fff; }
+  .toolbar { display: none; }
+  .wrap { margin: 0; padding: 0; }
+  .page {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 14mm 14mm;
+  }
+  a { color: inherit; text-decoration: none; }
+  .no-print, .no-print * { display: none !important; }
+  /* Évite les coupures disgracieuses dans les encadrés et phases */
+  .note, .phase-box, .exercise-grid .card, .objectifs-grid .obj {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  h2.chapter-title, h3.section-title {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+  @page { size: A4; margin: 12mm; }
+}
