@@ -261,6 +261,105 @@ details[open] > .faq-q::before {
   font-size: 13px;
 }
 
+/* ---------- Compat : classes héritées de l'ancien corpus ---------- */
+/* Variante "info" de .note : fond bleu plus marqué */
+.note.info {
+  border-left-color: var(--accent);
+  background: #f4faff;
+}
+
+/* Alias de .faq-answer (neurolyse) */
+.faq-a {
+  margin: 6px 0 10px 16px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.faq-section { margin: 14px 0; }
+
+/* Grille de piliers (livrets kiné) */
+.pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 10px 0;
+}
+.pillar-item {
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--accent);
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #fff;
+}
+.pillar-item h4 {
+  margin: 0 0 6px;
+  color: var(--accent);
+  font-size: 14px;
+}
+
+/* Banner d'avertissement fort (livrets kiné / conseils) */
+.warn-box,
+.warning-box {
+  border: 1px solid #f5c6c6;
+  border-left: 6px solid #d93025;
+  background: #fff5f4;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 12px 0;
+  font-weight: 600;
+}
+
+/* Phase détaillée (conseils-kine) */
+.phase-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 8px;
+}
+.phase-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+/* Encadré exercice (livrets kiné) */
+.exercise-box {
+  border: 1px solid var(--border);
+  border-left: 6px solid var(--accent2);
+  background: #fbfeff;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 10px 0;
+}
+
+/* Carte exercice (conseils-kine) et item d'objectif */
+.exercise-item,
+.objectif-item {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #fff;
+  margin: 8px 0;
+}
+.exercise-item h4,
+.objectif-item h4 {
+  margin: 0 0 6px;
+  font-size: 14px;
+  color: var(--accent);
+}
+
+/* Liste d'emails en pied (livrets kiné) */
+footer .emails {
+  font-size: 12px;
+  color: var(--muted);
+}
+
 /* ---------- Liens ---------- */
 a { color: var(--accent); }
 a:hover { text-decoration: underline; }
