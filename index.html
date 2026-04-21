@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" name="viewport"/>
+<title>Espace Patient : Fiches d'Information | Espace Francilien du Rachis</title>
+<meta name="description" content="Portail patient de l'Espace Francilien du Rachis. Retrouvez votre parcours de soins, le guide pratique et toutes les fiches d'information sur les chirurgies et la rééducation."/>
+<link rel="canonical" href="https://raphaeljameson-png.github.io/fiches-information-patient/" />
+
+<style>
+  :root {
+    --ink: #111;
+    --muted: #555;
+    --muted-2: #8a8a8a;
+    --accent: #0b6fa4;
+    --accent2: #22b8b8;
+    --accent3: #6c5ce7;
+    --accent4: #e67e22;
+    --accent5: #2e7d32;
+    --bg: #f3f5f7;
+    --card-bg: #fff;
+    --border: #d9d9d9;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* HEADER */
+  .header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--accent2);
+    padding: 12px 16px;
+    position: sticky; top: 0; z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+  .header-content { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; gap: 12px; }
+  .header img.logo {
+    width: 52px; height: auto; flex-shrink: 0;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,.08));
+  }
+  .header-text .brand-name {
+    margin: 0; font-size: 17px; font-weight: 800; color: var(--accent);
+    text-transform: uppercase; letter-spacing: .5px;
+  }
+  .header-text p { margin: 0; font-size: 11.5px; color: var(--muted); font-weight: 600; }
+
+  .container { max-width: 1000px; margin: 16px auto; padding: 0 12px 40px; }
+
+  /* INTRO */
+  .intro { text-align: center; margin-bottom: 28px; margin-top: 18px; }
+  .intro h1 { margin: 0 0 8px 0; font-size: 24px; color: var(--ink); }
+  .doctors-team {
+    color: var(--accent); font-weight: 800; font-size: 14px; margin-bottom: 12px;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 12px;
+  }
+  @media (max-width: 600px) {
+    .doctors-team { font-size: 13px; flex-direction: column; gap: 4px; }
+  }
+  .intro p.desc { margin: 0; color: var(--muted); font-size: 15px; }
+
+  /* DASHBOARD PARCOURS */
+  .dashboard {
+    background: #fff; border-radius: 16px 16px 0 0;
+    border: 2px solid var(--accent2); border-bottom: none;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.05); overflow: hidden;
+  }
+  .dashboard-header { padding: 20px 16px; background: linear-gradient(135deg, #fff, #f0fafa); }
+  .dashboard-header h2 { margin: 0; font-size: 19px; color: var(--accent); display: flex; align-items: center; gap: 8px; }
+  .progress-wrapper { margin-top: 15px; }
+  .progress-info {
+    display: flex; justify-content: space-between;
+    font-size: 12px; font-weight: 800; color: var(--accent2); margin-bottom: 8px;
+  }
+  .progress-bar-bg { background: #eee; height: 8px; border-radius: 4px; overflow: hidden; }
+  #progress-fill {
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    width: 0%; height: 100%;
+    transition: width .6s cubic-bezier(.23,1,.32,1);
+  }
+
+  .tabs {
+    display: flex; background: #f8f9fa; border-bottom: 1px solid #eee;
+    overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    padding: 14px 18px; border: none; background: none; cursor: pointer;
+    font-size: 11px; font-weight: 800; color: var(--muted); text-transform: uppercase;
+    white-space: nowrap; border-bottom: 3px solid transparent; transition: .3s;
+    flex-shrink: 0; font-family: inherit;
+  }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); background: #fff; }
+
+  .tab-content { padding: 20px 16px; display: none; animation: fadeIn .4s ease; }
+  .tab-content.active { display: block; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(4px);} to {opacity:1; transform:translateY(0);} }
+
+  .check-grid { display: grid; gap: 10px; grid-template-columns: 1fr; }
+  @media (min-width: 600px) { .check-grid { grid-template-columns: 1fr 1fr; } }
+  .check-item {
+    display: flex; align-items: center; gap: 12px; padding: 14px;
+    background: #f9f9f9; border-radius: 12px; cursor: pointer;
+    border: 1px solid transparent; transition: all .2s;
+  }
+  .check-item:active { background: #f0f7f7; transform: scale(.98); }
+  .check-item input { width: 22px; height: 22px; pointer-events: none; accent-color: var(--accent2); }
+  .check-item-text { font-size: 13.5px; font-weight: 700; color: var(--ink); flex: 1; }
+  .check-item-text small { display: block; color: var(--muted); font-weight: 400; margin-top: 2px; font-size: 11.5px; }
+
+  /* BOUTON GUIDE */
+  .guide-cta {
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--accent); color: #fff; text-decoration: none;
+    padding: 18px 20px; border-radius: 0 0 16px 16px;
+    border: 2px solid var(--accent2); border-top: none;
+    margin-bottom: 32px; transition: .3s;
+  }
+  .guide-cta-text { font-weight: 700; font-size: 14px; }
+  .guide-cta .arrow { font-size: 18px; transition: transform .2s ease; }
+  .guide-cta:hover .arrow, .guide-cta:active .arrow { transform: translateX(4px); }
+
+  /* BARRE DE RECHERCHE */
+  .search-wrap { margin: 4px auto 20px; max-width: 640px; }
+  .search-box { position: relative; display: flex; align-items: center; }
+  .search-box input {
+    width: 100%; padding: 14px 16px 14px 46px;
+    border: 2px solid var(--border); border-radius: 999px;
+    font-size: 15px; background: #fff; outline: none;
+    transition: border-color .15s, box-shadow .15s; font-family: inherit;
+  }
+  .search-box input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(11,111,164,.10);
+  }
+  .search-box svg {
+    position: absolute; left: 16px; color: var(--muted-2); pointer-events: none;
+  }
+  .search-clear {
+    position: absolute; right: 10px; background: #eee; border: none;
+    width: 26px; height: 26px; border-radius: 50%; color: var(--muted);
+    cursor: pointer; font-size: 16px; display: none;
+    align-items: center; justify-content: center; padding: 0;
+  }
+  .search-box.has-value .search-clear { display: flex; }
+  .search-clear:hover { background: #ddd; }
+  .search-hint { text-align: center; font-size: 12px; color: var(--muted-2); margin-top: 8px; }
+
+  /* GRILLE DES FICHES */
+  .section-title {
+    font-size: 12px; font-weight: 800; text-transform: uppercase;
+    color: var(--muted); margin: 24px 0 12px 4px; letter-spacing: 1px;
+  }
+  .grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+  @media (min-width: 768px) { .grid { grid-template-columns: 1fr 1fr 1fr; } }
+
+  .card {
+    background: #fff; border-radius: 16px; border: 1px solid var(--border);
+    overflow: hidden; display: flex; flex-direction: column;
+    transition: box-shadow .2s;
+  }
+  .card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.06); }
+  .card h2.card-header {
+    margin: 0; padding: 16px; font-weight: 800; font-size: 12px;
+    text-transform: uppercase; letter-spacing: .5px;
+  }
+  .card-header.cervical   { background: #f0f7fa; color: var(--accent);    border-bottom: 3px solid var(--accent); }
+  .card-header.lombaire   { background: #f0fafa; color: #167a7a;          border-bottom: 3px solid var(--accent2); }
+  .card-header.endoscopie { background: #fef5ed; color: var(--accent4);   border-bottom: 3px solid var(--accent4); }
+  .card-header.medecine   { background: #f5f4ff; color: var(--accent3);   border-bottom: 3px solid var(--accent3); }
+  .card-header.reeducation{ background: rgba(46,125,50,.1); color: var(--accent5); border-bottom: 3px solid var(--accent5); }
+
+  .links { list-style: none; margin: 0; padding: 0; }
+  .links a {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px; text-decoration: none; color: var(--ink);
+    font-size: 14px; font-weight: 600; border-bottom: 1px solid #f2f2f2;
+    transition: background .2s ease;
+  }
+  .links a:last-child { border-bottom: none; }
+  .links a:active, .links a:hover { background: #f4f8fb; }
+  .links a span.arrow {
+    color: var(--accent2); font-size: 16px; transition: transform .2s ease;
+    flex-shrink: 0; margin-left: 8px;
+  }
+  .links a:hover span.arrow, .links a:active span.arrow { transform: translateX(4px); }
+
+  .full-width { grid-column: 1 / -1; }
+  .grid-links { display: grid; grid-template-columns: 1fr; }
+  @media (min-width: 600px) { .grid-links { grid-template-columns: 1fr 1fr; } }
+
+  /* états filtrage */
+  .card.hidden, .links a.hidden { display: none !important; }
+  mark { background: #fff3a0; color: inherit; padding: 0 2px; border-radius: 3px; }
+
+  .no-results {
+    display: none; text-align: center; padding: 40px 20px; color: var(--muted);
+    background: #fff; border-radius: 16px; border: 1px dashed var(--border);
+  }
+
+  footer {
+    text-align: center; padding: 40px 20px; color: var(--muted);
+    font-size: 12px; border-top: 1px solid var(--border); margin-top: 30px;
+  }
+  footer a { color: var(--accent); text-decoration: none; font-weight: 700; }
+  .version-info { margin-top: 15px; font-size: 11px; color: #aaa; }
+</style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-content">
+      <img src="logo.png" alt="Logo Espace Francilien du Rachis" class="logo">
+      <div class="header-text">
+        <div class="brand-name">Espace Francilien du Rachis</div>
+        <p>Dr Jameson · Dr Lamerain · Dr Travert</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div class="intro">
+      <h1>Vos fiches d'information patient</h1>
+      <div class="doctors-team">
+        <span>Dr Raphaël JAMESON</span>
+        <span>Dr Mayalen LAMERAIN</span>
+        <span>Dr Christophe TRAVERT</span>
+      </div>
+      <p class="desc">Sélectionnez l'intervention qui vous concerne pour lire, télécharger ou imprimer votre fiche détaillée.</p>
+    </div>
+
+    <!-- DASHBOARD PARCOURS -->
+    <div class="dashboard">
+      <div class="dashboard-header">
+        <h2>🚀 Mon Parcours de Soins</h2>
+        <div class="progress-wrapper">
+          <div class="progress-info">
+            <span>Préparation</span>
+            <span id="pct-label">0%</span>
+          </div>
+          <div class="progress-bar-bg"><div id="progress-fill"></div></div>
+        </div>
+      </div>
+
+      <div class="tabs" role="tablist">
+        <button class="tab-btn active" onclick="openTab(event, 'phase1')">1. Préparation</button>
+        <button class="tab-btn" onclick="openTab(event, 'phase2')">2. Jour J</button>
+        <button class="tab-btn" onclick="openTab(event, 'phase3')">3. Hospitalisation</button>
+        <button class="tab-btn" onclick="openTab(event, 'phase4')">4. Convalescence</button>
+      </div>
+
+      <div id="phase1" class="tab-content active">
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Imagerie complète<small>Scanner, IRM et Radios à jour</small></div></label>
+          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Anesthésie<small>Consultation validée (min. 48h avant)</small></div></label>
+          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Anticoagulants<small>Protocole d'arrêt/substitution validé</small></div></label>
+          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Bilan Sanguin<small>Prise de sang effectuée</small></div></label>
+        </div>
+      </div>
+
+      <div id="phase2" class="tab-content">
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Douche au savon doux<small>Soir et matin même (savon prescrit)</small></div></label>
+          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Jeûne strict<small>Zéro nourriture et boisson</small></div></label>
+          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Documents signés<small>Consentement et fiches d'info</small></div></label>
+        </div>
+      </div>
+
+      <div id="phase3" class="tab-content">
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Premier lever<small>Dès le lendemain matin avec le kiné</small></div></label>
+          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Gestes protecteurs<small>Apprentissage du lever « en bloc »</small></div></label>
+          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Suivi Drainage<small>Surveillance avant sortie</small></div></label>
+        </div>
+      </div>
+
+      <div id="phase4" class="tab-content">
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Soins cicatrice<small>Infirmière à domicile (tous les 2 j)</small></div></label>
+          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Marche quotidienne<small>Reprise progressive de l'autonomie</small></div></label>
+          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Contrôle<small>Consultation de suivi planifiée</small></div></label>
+        </div>
+      </div>
+    </div>
+
+    <a href="ressources/livret-transversal.html" class="guide-cta">
+      <div class="guide-cta-text">📖 Guide Pratique : Préparer mon intervention</div>
+      <div class="arrow">→</div>
+    </a>
+
+    <h2 class="section-title">Documentation Médicale</h2>
+
+    <!-- BARRE DE RECHERCHE -->
+    <div class="search-wrap">
+      <div class="search-box" id="searchBox">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" id="searchInput" placeholder="Rechercher : hernie, ALIF, infiltration, kiné..." autocomplete="off" aria-label="Rechercher une fiche">
+        <button type="button" class="search-clear" id="searchClear" aria-label="Effacer">×</button>
+      </div>
+      <p class="search-hint">Tapez un mot-clé pour filtrer les fiches · <kbd>/</kbd> pour activer la recherche</p>
+    </div>
+
+    <div class="grid" id="cardsGrid">
+
+      <div class="card" data-cat="cervical">
+        <h2 class="card-header cervical">Cervical</h2>
+        <nav class="links">
+          <a href="cervical/acdf.html" data-keywords="acdf arthrodese cervicale anterieure fusion">Arthrodèse ACDF <span class="arrow">→</span></a>
+          <a href="cervical/prothese-discale.html" data-keywords="prothese discale cervicale mobile">Prothèse Discale <span class="arrow">→</span></a>
+          <a href="cervical/laminectomie.html" data-keywords="laminectomie canal cervical etroit myelopathie voie posterieure">Canal cervical (Voie Post.) <span class="arrow">→</span></a>
+          <a href="cervical/livret-kine.html" data-keywords="livret kine cervical reeducation post-op exercices">Livret kiné cervical <span class="arrow">→</span></a>
+        </nav>
+      </div>
+
+      <div class="card" data-cat="lombaire">
+        <h2 class="card-header lombaire">Lombaire</h2>
+        <nav class="links">
+          <a href="lombaire/hernie-discale.html" data-keywords="hernie discale lombaire sciatique">Hernie discale <span class="arrow">→</span></a>
+          <a href="lombaire/stenose-mini-invasive.html" data-keywords="stenose canal lombaire mini invasif decompression">Sténose Mini-invasif <span class="arrow">→</span></a>
+          <a href="lombaire/laminectomie.html" data-keywords="laminectomie canal lombaire open decompression">Canal Lombaire (Open) <span class="arrow">→</span></a>
+          <a href="lombaire/alif.html" data-keywords="alif arthrodese anterieure lombaire fusion">Arthrodèse ALIF <span class="arrow">→</span></a>
+          <a href="lombaire/prothese-discale.html" data-keywords="prothese discale lombaire mobile">Prothèse discale lombaire <span class="arrow">→</span></a>
+          <a href="lombaire/tlif.html" data-keywords="tlif arthrodese posterieure mini invasive transforaminale">Arthrodèse postérieure mini-invasive (TLIF) <span class="arrow">→</span></a>
+          <a href="lombaire/arthrodese-posterieure.html" data-keywords="arthrodese posterieure open conventionnelle lombaire fusion">Arthrodèse postérieure conventionnelle (Open) <span class="arrow">→</span></a>
+          <a href="sacro-iliaque/arthrodese.html" data-keywords="arthrodese sacro iliaque SI fusion">Arthrodèse Sacro-iliaque <span class="arrow">→</span></a>
+          <a href="procedures/cimentoplastie-spinejack.html" data-keywords="cimentoplastie spinejack vertebroplastie tassement">Cimentoplastie / SpineJack <span class="arrow">→</span></a>
+          <a href="lombaire/livret-kine.html" data-keywords="livret kine lombaire reeducation post-op exercices">Livret kiné lombaire <span class="arrow">→</span></a>
+        </nav>
+      </div>
+
+      <div class="card" data-cat="endoscopie">
+        <h2 class="card-header endoscopie">Endoscopie</h2>
+        <nav class="links">
+          <a href="lombaire/ube-endoscopie.html" data-keywords="ube endoscopie rachis unilateral bilateral biportal">Endoscopie UBE <span class="arrow">→</span></a>
+        </nav>
+      </div>
+
+      <div class="card full-width" data-cat="medecine">
+        <h2 class="card-header medecine">Médecine Interventionnelle</h2>
+        <nav class="links grid-links">
+          <a href="procedures/infiltrations.html" data-keywords="infiltration rachis radiculaire epidurale facettaire">Infiltrations rachidiennes <span class="arrow">→</span></a>
+          <a href="lombaire/neurolyse.html" data-keywords="neurolyse lombaire fibrose nerveuse">Neurolyse lombaire <span class="arrow">→</span></a>
+        </nav>
+      </div>
+
+      <div class="card full-width" data-cat="reeducation">
+        <h2 class="card-header reeducation">Rééducation &amp; Suites</h2>
+        <nav class="links grid-links">
+          <a href="lombaire/reeducation-post-op.html" data-keywords="quelle reeducation apres op chirurgie lombaire">Quelle rééducation après l'opération lombaire ? <span class="arrow">→</span></a>
+          <a href="ressources/ecole-du-dos.html" data-keywords="ecole dos bonnes postures prevention">Les bonnes postures (L'École du Dos) <span class="arrow">→</span></a>
+          <a href="ressources/conseils-kine.html" data-keywords="conseils kine generaux rachis">Conseils pour le kinésithérapeute <span class="arrow">→</span></a>
+          <a href="ressources/livret-transversal.html" data-keywords="livret transversal rachis general preparation">Livret transversal <span class="arrow">→</span></a>
+        </nav>
+      </div>
+
+    </div>
+
+    <div class="no-results" id="noResults">
+      <strong>Aucune fiche ne correspond à votre recherche.</strong><br>
+      Essayez un autre mot-clé, ou effacez la recherche pour voir tout le catalogue.
+    </div>
+
+  </main>
+
+  <footer>
+    95, rue de Prony — 75017 Paris<br>
+    <a href="https://www.rachis.paris" target="_blank" rel="noopener noreferrer">www.rachis.paris</a>
+    <div class="version-info" id="update-date">Mise à jour en cours...</div>
+  </footer>
+
+  <script>
+    /* ===== Dashboard parcours ===== */
+    function openTab(evt, phaseName) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(phaseName).classList.add('active');
+      evt.currentTarget.classList.add('active');
+      evt.currentTarget.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+    }
+
+    function updateProgress() {
+      const checkboxes = document.querySelectorAll('.dashboard input[type="checkbox"]');
+      let checkedCount = 0;
+      checkboxes.forEach((cb, index) => {
+        if (cb.checked) checkedCount++;
+        try { localStorage.setItem('patient_check_' + index, cb.checked); } catch(e){}
+      });
+      const pct = Math.round((checkedCount / checkboxes.length) * 100);
+      document.getElementById('progress-fill').style.width = pct + '%';
+      document.getElementById('pct-label').innerText = pct + '%';
+    }
+
+    window.addEventListener('load', function() {
+      // Restauration des cases cochées
+      const checkboxes = document.querySelectorAll('.dashboard input[type="checkbox"]');
+      checkboxes.forEach((cb, index) => {
+        try {
+          if (localStorage.getItem('patient_check_' + index) === 'true') cb.checked = true;
+        } catch(e){}
+      });
+      updateProgress();
+
+      // Date de dernière MAJ
+      const d = new Date(document.lastModified);
+      const opts = { year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit' };
+      document.getElementById('update-date').innerText =
+        "Dernière mise à jour : " + d.toLocaleDateString('fr-FR', opts).replace(':', 'h');
+    });
+
+    /* ===== Recherche / filtrage ===== */
+    (function() {
+      const input = document.getElementById('searchInput');
+      const clearBtn = document.getElementById('searchClear');
+      const box = document.getElementById('searchBox');
+      const cards = document.querySelectorAll('#cardsGrid .card');
+      const noResults = document.getElementById('noResults');
+
+      function norm(s) {
+        return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      }
+
+      function highlight(anchor, q) {
+        // réinit
+        anchor.querySelectorAll('mark').forEach(m => {
+          const t = document.createTextNode(m.textContent);
+          m.replaceWith(t);
+        });
+        if (!q) return;
+        const nq = norm(q);
+        const walker = document.createTreeWalker(anchor, NodeFilter.SHOW_TEXT);
+        const nodes = [];
+        let n;
+        while ((n = walker.nextNode())) nodes.push(n);
+        nodes.forEach(node => {
+          if (node.parentNode && node.parentNode.classList.contains('arrow')) return;
+          const raw = node.textContent;
+          const nr = norm(raw);
+          const i = nr.indexOf(nq);
+          if (i < 0) return;
+          const before = raw.slice(0, i);
+          const match = raw.slice(i, i + q.length);
+          const after = raw.slice(i + q.length);
+          const frag = document.createDocumentFragment();
+          if (before) frag.appendChild(document.createTextNode(before));
+          const mk = document.createElement('mark');
+          mk.textContent = match;
+          frag.appendChild(mk);
+          if (after) frag.appendChild(document.createTextNode(after));
+          node.parentNode.replaceChild(frag, node);
+        });
+      }
+
+      function filter() {
+        const q = input.value.trim();
+        const nq = norm(q);
+        box.classList.toggle('has-value', q.length > 0);
+
+        let total = 0;
+        cards.forEach(card => {
+          const anchors = card.querySelectorAll('.links a');
+          let visible = 0;
+          anchors.forEach(a => {
+            const label = norm(a.textContent);
+            const kws = norm(a.dataset.keywords || '');
+            const hit = !nq || (label + ' ' + kws).includes(nq);
+            a.classList.toggle('hidden', !hit);
+            if (hit) visible++;
+            highlight(a, q);
+          });
+          card.classList.toggle('hidden', visible === 0);
+          total += visible;
+        });
+
+        noResults.style.display = (nq && total === 0) ? 'block' : 'none';
+      }
+
+      input.addEventListener('input', filter);
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        input.focus();
+        filter();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if ((e.key === '/' && document.activeElement !== input) ||
+            ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k')) {
+          e.preventDefault(); input.focus();
+        }
+        if (e.key === 'Escape' && document.activeElement === input) {
+          input.value = ''; filter(); input.blur();
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>
