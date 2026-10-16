@@ -2,6 +2,6 @@
 
 Portail patient unifié de l'**Espace Francilien du Rachis** — fiches d'information, livrets kiné, parcours de soins.
 
-**Dr Jameson · Dr Lamerain · Dr Travert**
+**Dr Jameson · Dr Lamerain · Dr Travert · Dr Arvieu**
 
 🌐 Site publié : https://raphaeljameson-png.github.io/fiches-information-patient/
