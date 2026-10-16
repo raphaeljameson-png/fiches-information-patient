@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" name="viewport"/>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" name="viewport">
 <title>Espace Patient : Fiches d'Information | Espace Francilien du Rachis</title>
-<meta name="description" content="Portail patient de l'Espace Francilien du Rachis. Retrouvez votre parcours de soins, le guide pratique et toutes les fiches d'information sur les chirurgies et la rééducation."/>
-<link rel="canonical" href="https://raphaeljameson-png.github.io/fiches-information-patient/" />
+<meta name="description" content="Portail patient de l'Espace Francilien du Rachis. Retrouvez votre parcours de soins, le guide pratique et toutes les fiches d'information sur les chirurgies et la rééducation.">
+<link rel="canonical" href="https://raphaeljameson-png.github.io/fiches-information-patient/">
 
 <style>
   :root {
@@ -212,7 +212,7 @@
   footer a { color: var(--accent); text-decoration: none; font-weight: 700; }
   .version-info { margin-top: 15px; font-size: 11px; color: #aaa; }
 </style>
-</head>
+<meta name="robots" content="noindex,nofollow"></head>
 <body>
 
   <header class="header">
@@ -229,7 +229,7 @@
 
     <div class="intro">
       <h1>Vos fiches d'information patient</h1>
-      <div class="doctors-team">
+      <p class="note"><strong>Catalogue V2 — brouillons du 16 octobre 2026.</strong> Relecture comparative avant diffusion. Les consignes propres à chaque intervention restent à valider.</p><div class="doctors-team">
         <span>Dr Raphaël JAMESON</span>
         <span>Dr Mayalen LAMERAIN</span>
         <span>Dr Christophe TRAVERT</span>
@@ -262,22 +262,22 @@
         <div class="check-grid">
           <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Imagerie complète<small>Scanner, IRM et Radios à jour</small></div></label>
           <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Anesthésie<small>Consultation validée (min. 48h avant)</small></div></label>
-          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Anticoagulants<small>Protocole d'arrêt/substitution validé</small></div></label>
+          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Anticoagulants<small>Consignes personnalisées reçues : ne pas modifier seul le traitement.</small></div></label>
           <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Bilan Sanguin<small>Prise de sang effectuée</small></div></label>
         </div>
       </div>
 
       <div id="phase2" class="tab-content">
         <div class="check-grid">
-          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Douche au savon doux<small>Soir et matin même (savon prescrit)</small></div></label>
-          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Jeûne strict<small>Zéro nourriture et boisson</small></div></label>
+          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Douche au savon doux<small>Suivre les consignes d’hygiène de l’établissement.</small></div></label>
+          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Consignes de jeûne<small>Respecter les horaires donnés par l’équipe pour les aliments et les boissons.</small></div></label>
           <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Documents signés<small>Consentement et fiches d'info</small></div></label>
         </div>
       </div>
 
       <div id="phase3" class="tab-content">
         <div class="check-grid">
-          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Premier lever<small>Dès le lendemain matin avec le kiné</small></div></label>
+          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Premier lever<small>Avec l’équipe, selon le geste et la récupération.</small></div></label>
           <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Gestes protecteurs<small>Apprentissage du lever « en bloc »</small></div></label>
           <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Suivi Drainage<small>Surveillance avant sortie</small></div></label>
         </div>
@@ -285,7 +285,7 @@
 
       <div id="phase4" class="tab-content">
         <div class="check-grid">
-          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Soins cicatrice<small>Infirmière à domicile (tous les 2 j)</small></div></label>
+          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Soins cicatrice<small>Pansements et surveillance selon la prescription.</small></div></label>
           <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Marche quotidienne<small>Reprise progressive de l'autonomie</small></div></label>
           <label class="check-item"><input type="checkbox" onchange="updateProgress()"><div class="check-item-text">Contrôle<small>Consultation de suivi planifiée</small></div></label>
         </div>
@@ -302,7 +302,7 @@
     <!-- BARRE DE RECHERCHE -->
     <div class="search-wrap">
       <div class="search-box" id="searchBox">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <input type="search" id="searchInput" placeholder="Rechercher : hernie, ALIF, infiltration, kiné..." autocomplete="off" aria-label="Rechercher une fiche">
         <button type="button" class="search-clear" id="searchClear" aria-label="Effacer">×</button>
       </div>
@@ -348,7 +348,7 @@
         <h2 class="card-header medecine">Médecine Interventionnelle</h2>
         <nav class="links grid-links">
           <a href="procedures/infiltrations.html" data-keywords="infiltration rachis radiculaire epidurale facettaire">Infiltrations rachidiennes <span class="arrow">→</span></a>
-          <a href="lombaire/neurolyse.html" data-keywords="neurolyse lombaire fibrose nerveuse">Neurolyse lombaire <span class="arrow">→</span></a>
+          <a href="lombaire/neurolyse.html" data-keywords="thermocoagulation facettaire rhizolyse neurolyse lombaire arthrose douleur">Thermocoagulation facettaire (rhizolyse) <span class="arrow">→</span></a>
         </nav>
       </div>
 
@@ -503,6 +503,5 @@
     })();
   </script>
 
-  <script src="https://raphaeljameson-png.github.io/chatbot-rachis/widget/widget.js" data-api-url="https://europe-west1-chatbot-rachis.cloudfunctions.net/askChatbot" data-context="default" defer></script>
-</body>
+  </body>
 </html>

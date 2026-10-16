@@ -1,7 +1,10 @@
-# fiches-information-patient
+# Fiches patients — V2 de travail
 
-Portail patient unifié de l'**Espace Francilien du Rachis** — fiches d'information, livrets kiné, parcours de soins.
+22 fiches et livrets révisés pour relecture comparative avec Claude, avant validation médicale finale par le Dr Jameson.
 
-**Dr Jameson · Dr Lamerain · Dr Travert · Dr Arvieu**
+La branche main et les V1 publiées restent inchangées.
 
-🌐 Site publié : https://raphaeljameson-png.github.io/fiches-information-patient/
+- [Dossier de relecture et consignes V3](relecture-v2/README.md)
+- [Catalogue des pages HTML](index.html)
+
+Équipe : Dr Raphaël Jameson · Dr Mayalen Lamerain · Dr Christophe Travert · Dr Robin Arvieu.
